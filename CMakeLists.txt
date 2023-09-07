@@ -1,4 +1,4 @@
-project(devtools-cn)
+project(devtools-archoream)
 
 ## Setup
 cmake_minimum_required(VERSION 3.0)
@@ -17,28 +17,28 @@ function(install_build_script cmd)
     DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/cmds/${cmd}")
 endfunction()
 
-install_build_script(archlinuxcn-i686-build)
-install_build_script(archlinuxcn-x86_64-build)
-install_build_script(archlinuxcn-testing-x86_64-build)
-install_build_script(archlinuxcn-staging-x86_64-build)
-install_build_script(archlinuxcn-kde-unstable-x86_64-build)
-install_build_script(multilib-archlinuxcn-build)
+install_build_script(archoream-i686-build)
+install_build_script(archoream-x86_64-build)
+install_build_script(archoream-testing-x86_64-build)
+install_build_script(archoream-staging-x86_64-build)
+install_build_script(archoream-kde-unstable-x86_64-build)
+install_build_script(multilib-archoream-build)
 
 foreach(CARCH arm armv6h armv7h aarch64)
-  install_build_script("archlinuxcn-${CARCH}-build")
-  configure_file(archlinuxcn-arm.conf.in
-    "archlinuxcn-${CARCH}.conf" @ONLY)
+  install_build_script("archoream-${CARCH}-build")
+  configure_file(archoream-arm.conf.in
+    "archoream-${CARCH}.conf" @ONLY)
   install(FILES
-    "${CMAKE_CURRENT_BINARY_DIR}/archlinuxcn-${CARCH}.conf"
+    "${CMAKE_CURRENT_BINARY_DIR}/archoream-${CARCH}.conf"
     DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/pacman.conf.d")
 endforeach()
 
 install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/cmds/"
   DESTINATION "${CMAKE_INSTALL_BINDIR}")
 install(FILES
-  "archlinuxcn.conf"
-  "archlinuxcn-testing.conf"
-  "archlinuxcn-staging.conf"
-  "archlinuxcn-kde-unstable.conf"
-  "multilib-archlinuxcn.conf"
+  "archoream.conf"
+  "archoream-testing.conf"
+  "archoream-staging.conf"
+  "archoream-kde-unstable.conf"
+  "multilib-archoream.conf"
   DESTINATION "${CMAKE_INSTALL_DATAROOTDIR}/devtools/pacman.conf.d/")

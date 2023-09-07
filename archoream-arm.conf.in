@@ -19,7 +19,7 @@ HoldPkg     = pacman glibc
 #XferCommand = /usr/bin/curl -L -C - -f -o %o %u
 #XferCommand = /usr/bin/wget --passive-ftp -c -O %o %u
 #CleanMethod = KeepInstalled
-Architecture = auto
+Architecture = @CARCH@
 
 # Pacman won't upgrade packages listed in IgnorePkg and members of IgnoreGroup
 #IgnorePkg   =
@@ -31,11 +31,10 @@ Architecture = auto
 # Misc options
 #UseSyslog
 #Color
-NoProgressBar
+#TotalDownload
 # We cannot check disk space from within a chroot environment
 #CheckSpace
-VerbosePkgLists
-ParallelDownloads = 5
+#VerbosePkgLists
 
 # By default, pacman accepts packages signed by keys that its local keyring
 # trusts (see pacman-key and its man page), as well as unsigned packages.
@@ -66,23 +65,29 @@ LocalFileSigLevel = Optional
 # uncommented to enable the repo.
 #
 
-[archlinuxcn]
-Server = http://repo.archlinuxcn.org/$arch
-
 # The testing repositories are disabled by default. To enable, uncomment the
 # repo name header and Include lines. You can add preferred servers immediately
 # after the header, and they will be used before the default mirrors.
 
-[core-testing]
-Include = /etc/pacman.d/mirrorlist
+[archoream]
+Server = https://mirrors.hoream.top/archoream
+
+[archlinuxcn]
+Server = http://repo.archlinuxcn.org/$arch
 
 [core]
 Include = /etc/pacman.d/mirrorlist
 
-[extra-testing]
+[extra]
 Include = /etc/pacman.d/mirrorlist
 
-[extra]
+[community]
+Include = /etc/pacman.d/mirrorlist
+
+[alarm]
+Include = /etc/pacman.d/mirrorlist
+
+[aur]
 Include = /etc/pacman.d/mirrorlist
 
 # An example of a custom package repository.  See the pacman manpage for
